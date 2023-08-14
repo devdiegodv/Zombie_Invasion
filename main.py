@@ -8,19 +8,19 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720)) #800 width, 600 height original
 
 # títle and icon
-pygame.display.set_caption("Zombie Invasion")
-icon = pygame.image.load("skullLogo.png")
+pygame.display.set_caption("img/Zombie Invasion")
+icon = pygame.image.load("img/skullLogo.png")
 pygame.display.set_icon(icon)
-background = pygame.image.load("background.png")
+background = pygame.image.load("img/background.png")
 
 # player
-img_player = pygame.image.load("player.png")
+img_player = pygame.image.load("img/player.png")
 player_pos_x = 10
 player_pos_y = 328 # screen height / 2 - 32 (image's size 64px/2)
 player_movement = 0
 
 # zombies
-img_zombie = pygame.image.load("zombi.png")
+img_zombie = pygame.image.load("img/zombi.png")
 zombie_pos_x = random.randint(0,608) # screen width / 2 - 32 (image's size 64px/2)
 zombie_pos_y = random.randint(0,328) # screen height / 2 - 32 (image's size 64px/2)
 zombie_x_movement = -50
