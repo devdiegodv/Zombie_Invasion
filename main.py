@@ -35,7 +35,7 @@ while is_executed:
         if event.type == pygame.QUIT:
             is_executed = False
 
-        # check if player keep pressed KEYs left, right and his movement speed 0.5
+        # check if player keep pressed KEYs left / right and his movement speed 0.5
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 player_movement = -0.5
