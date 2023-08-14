@@ -1,2 +1,2 @@
-# Space_invasion
+# Zombie_Invasion
 Python mini game.
