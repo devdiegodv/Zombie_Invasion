@@ -67,8 +67,10 @@ while is_executed:
                 player_movement = -4
             if event.key == pygame.K_DOWN:
                 player_movement = 4
-            if event.key == pygame.K_SPACE:
-                shoot_bullets(bullet_pos_x, player_pos_y)  # adjust bullet's position
+            if event.key == pygame.K_SPACE and not bullet_visible:  # can shoot only if bullet visible is False
+                bullet_pos_x = player_pos_x  # adjust bullet to player pos X
+                bullet_pos_y = player_pos_y  # adjust bullet to player pos Y
+                shoot_bullets(bullet_pos_x, bullet_pos_y)
 
         # check if player is NOT pressing any key then reset player movement's to 0
         if event.type == pygame.KEYUP:
@@ -95,10 +97,12 @@ while is_executed:
         zombie_y_movement = -3
         zombie_pos_x += zombie_x_movement
 
-    # bullet movement
     if bullet_visible:
-        shoot_bullets(bullet_pos_x, player_pos_y)  # Ajusta la posición de la bala
-        bullet_pos_x += bullet_x_movement  # Cambia la dirección del movimiento de la bala
+        shoot_bullets(bullet_pos_x, player_pos_y)  # adjust bullet's position
+        bullet_pos_x += bullet_x_movement  # adjust bullet's movement direction
+
+        if bullet_pos_x > 1280:  # if bullet get out of screen you can shoot again
+            bullet_visible = False
 
     # we set player's skin on screen
     player(player_pos_x, player_pos_y)
