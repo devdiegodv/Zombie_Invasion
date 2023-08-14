@@ -11,6 +11,7 @@ screen = pygame.display.set_mode((1280, 720)) #800 width, 600 height original
 pygame.display.set_caption("Zombie Invasion")
 icon = pygame.image.load("skullLogo.png")
 pygame.display.set_icon(icon)
+background = pygame.image.load("background.png")
 
 # player
 img_player = pygame.image.load("player.png")
@@ -23,7 +24,7 @@ img_zombie = pygame.image.load("zombi.png")
 zombie_pos_x = random.randint(0,608) # screen width / 2 - 32 (image's size 64px/2)
 zombie_pos_y = random.randint(0,328) # screen height / 2 - 32 (image's size 64px/2)
 zombie_x_movement = -50
-zombie_y_movement = 0.3
+zombie_y_movement = 3
 
 # var to check if screen's player is opened/closed
 is_executed = True
@@ -37,9 +38,8 @@ def zombie(x, y):
     screen.blit(img_zombie, (x, y))
 
 while is_executed:
-
-    # background screen's color
-    screen.fill((2, 191, 252))
+    # background screen's image
+    screen.blit(background, (0,0))
 
     # check if user closes the window
     # screen will be shown while 'is_executed' is True
@@ -50,9 +50,9 @@ while is_executed:
         # check if player keep pressed KEYs left / right and his movement speed 0.5
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                player_movement = -0.5
+                player_movement = -4
             if event.key == pygame.K_DOWN:
-                player_movement = 0.5
+                player_movement = 4
 
         # check if player is NOT pressing any key then reset player movement's to 0
         if event.type == pygame.KEYUP:
@@ -73,10 +73,10 @@ while is_executed:
 
     # keep zombies inside borders
     if zombie_pos_y <= 0:
-        zombie_y_movement = 0.3
+        zombie_y_movement = 3
         zombie_pos_x += zombie_x_movement
     elif zombie_pos_y >= 656: # 720 (height) - 64px (image's size skin)
-        zombie_y_movement = -0.3
+        zombie_y_movement = -3
         zombie_pos_x += zombie_x_movement
 
     # we set player's skin on screen
