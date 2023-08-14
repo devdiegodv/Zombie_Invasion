@@ -37,18 +37,25 @@ while is_executed:
 
         # check if player keep pressed KEYs left / right and his movement speed 0.5
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_UP:
                 player_movement = -0.5
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_DOWN:
                 player_movement = 0.5
 
         # check if player is NOT pressing any key then reset player movement's to 0
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 player_movement = 0
 
     # set player position depending on player_movement's var value
     player_pos_y += player_movement
+
+    # keep inside borders
+    if player_pos_y <= 0:
+        player_pos_y = 0
+    elif player_pos_y >= 656: # 720 (height) - 64px (image's size skin)
+        player_pos_y = 656
+
     # we set player's skin on screen
     player(player_pos_x, player_pos_y)
 
