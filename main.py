@@ -20,6 +20,7 @@ player_movement = 0
 # var to check if screen's player is opened/closed
 is_executed = True
 
+# function to draw player's skin in his position X and Y
 def player(x, y):
     screen.blit(img_player, (player_pos_x, player_pos_y))
 
