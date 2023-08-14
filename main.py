@@ -1,4 +1,5 @@
 import pygame
+import random
 
 # starts pygame
 pygame.init()
@@ -17,12 +18,23 @@ player_pos_x = 10
 player_pos_y = 328 # screen height / 2 - 32 (image's size 64px/2)
 player_movement = 0
 
+# zombies
+img_zombie = pygame.image.load("zombi.png")
+zombie_pos_x = random.randint(0,608) # screen width / 2 - 32 (image's size 64px/2)
+zombie_pos_y = random.randint(0,328) # screen height / 2 - 32 (image's size 64px/2)
+zombie_x_movement = -50
+zombie_y_movement = 0.3
+
 # var to check if screen's player is opened/closed
 is_executed = True
 
 # function to draw player's skin in his position X and Y
 def player(x, y):
-    screen.blit(img_player, (player_pos_x, player_pos_y))
+    screen.blit(img_player, (x, y))
+
+# function to draw zombie's skin in his position X and Y
+def zombie(x, y):
+    screen.blit(img_zombie, (x, y))
 
 while is_executed:
 
@@ -50,13 +62,26 @@ while is_executed:
     # set player position depending on player_movement's var value
     player_pos_y += player_movement
 
-    # keep inside borders
+    # keep player inside borders
     if player_pos_y <= 0:
         player_pos_y = 0
     elif player_pos_y >= 656: # 720 (height) - 64px (image's size skin)
         player_pos_y = 656
 
+    # set zombie position depending on zombie_y_movement's var value
+    zombie_pos_y += zombie_y_movement
+
+    # keep zombies inside borders
+    if zombie_pos_y <= 0:
+        zombie_y_movement = 0.3
+        zombie_pos_x += zombie_x_movement
+    elif zombie_pos_y >= 656: # 720 (height) - 64px (image's size skin)
+        zombie_y_movement = -0.3
+        zombie_pos_x += zombie_x_movement
+
     # we set player's skin on screen
     player(player_pos_x, player_pos_y)
+    zombie(zombie_pos_x, zombie_pos_y)
 
+    # update
     pygame.display.update()
