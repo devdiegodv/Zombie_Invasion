@@ -5,33 +5,33 @@ import random
 pygame.init()
 
 # screen size
-screen = pygame.display.set_mode((1280, 720)) #800 width, 600 height original
+screen = pygame.display.set_mode((800, 600)) #800 width, 600 height original
 
 # títle and icon
-pygame.display.set_caption("img/Zombie Invasion")
+pygame.display.set_caption("Zombie Invasion")
 icon = pygame.image.load("img/skullLogo.png")
 pygame.display.set_icon(icon)
-background = pygame.image.load("img/background.png")
+background = pygame.image.load("img/background.jpg")
 
 # player
 img_player = pygame.image.load("img/player.png")
-player_pos_x = 10
-player_pos_y = 328 # screen width / 2 - 32 (image's size 64px/2)
+player_pos_x = 368 # screen width / 2 - 32 (image's size 64px/2)
+player_pos_y = 500 # screen width / 2 - 32 (image's size 64px/2)
 player_movement = 0
 
 # zombies
-img_zombie = pygame.image.load("img/zombi.png")
-zombie_pos_x = random.randint(0, 608) # screen width / 2 - 32 (image's size 64px/2)
-zombie_pos_y = random.randint(0, 656) # screen height / 2 - 32 (image's size 64px/2)
-zombie_x_movement = -50
-zombie_y_movement = 3
+img_zombie = pygame.image.load("img/zombie.png")
+zombie_pos_x = random.randint(0, 736) # screen width / 2 - 32 (image's size 64px/2)
+zombie_pos_y = random.randint(50, 200) # screen height / 2 - 32 (image's size 64px/2)
+zombie_x_movement = 0.3 # zombie speed
+zombie_y_movement = 10 # zombie speed at getting close
 
 # bullets
 img_bullet = pygame.image.load("img/bullet.png")
 bullet_pos_x = 0
-bullet_pos_y = 328 # screen width / 2 - 32 (image's size 64px/2)
-bullet_x_movement = 8
-bullet_y_movement = 0
+bullet_pos_y = 500 # screen width / 2 - 32 (image's size 64px/2)
+bullet_x_movement = 0
+bullet_y_movement = 0.4 # bullet speed
 bullet_visible = False
 
 # var to check if screen's player is opened/closed
@@ -49,7 +49,7 @@ def zombie(x, y):
 def shoot_bullets(x, y):
     global bullet_visible
     bullet_visible = True
-    screen.blit(img_bullet, (x + 64, y + 16))  # adjust bullet's position
+    screen.blit(img_bullet, (x + 16, y + 10))  # adjust bullet's position
 
 while is_executed:
     # background screen's image
@@ -63,48 +63,51 @@ while is_executed:
 
         # check if player keep pressed KEYs left / right and his movement speed 4
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                player_movement = -4
-            if event.key == pygame.K_DOWN:
-                player_movement = 4
-            if event.key == pygame.K_SPACE and not bullet_visible:  # can shoot only if bullet visible is False
-                bullet_pos_x = player_pos_x  # adjust bullet to player pos X
-                bullet_pos_y = player_pos_y  # adjust bullet to player pos Y
-                shoot_bullets(bullet_pos_x, bullet_pos_y)
+            if event.key == pygame.K_LEFT:
+                player_movement = -1
+            if event.key == pygame.K_RIGHT:
+                player_movement = 1
+            if event.key == pygame.K_SPACE: # shoot key
+                if bullet_visible == False:
+                    bullet_pos_x = player_pos_x
+                    shoot_bullets(bullet_pos_x, bullet_pos_y)
 
         # check if player is NOT pressing any key then reset player movement's to 0
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 player_movement = 0
 
     # set player position depending on player_movement's var value
-    player_pos_y += player_movement
+    player_pos_x += player_movement
 
     # keep player inside borders
-    if player_pos_y <= 0:
-        player_pos_y = 0
-    elif player_pos_y >= 656: # 720 (height) - 64px (image's size skin)
-        player_pos_y = 656
+    if player_pos_x <= 0:
+        player_pos_x = 0
+    elif player_pos_x >= 736: # 720 (height) - 64px (image's size skin)
+        player_pos_x = 736
 
     # set zombie position depending on zombie_y_movement's var value
-    zombie_pos_y += zombie_y_movement
+    zombie_pos_x += zombie_x_movement
 
     # keep zombies inside borders
-    if zombie_pos_y <= 0:
-        zombie_y_movement = 3
-        zombie_pos_x += zombie_x_movement
-    elif zombie_pos_y >= 656: # 720 (height) - 64px (image's size skin)
-        zombie_y_movement = -3
-        zombie_pos_x += zombie_x_movement
+    if zombie_pos_x <= 0:
+        zombie_x_movement = 0.3
+        zombie_pos_y += zombie_y_movement
+    elif zombie_pos_x >= 656: # 720 (height) - 64px (image's size skin)
+        zombie_x_movement = -0.3
+        zombie_pos_y += zombie_y_movement
 
+    # reset shooting once bullet get out of screen
+    if bullet_pos_y <= -64:
+        bullet_pos_y = 500
+        bullet_visible = False
+
+    # bullet direction once shot
     if bullet_visible:
-        shoot_bullets(bullet_pos_x, player_pos_y)  # adjust bullet's position
-        bullet_pos_x += bullet_x_movement  # adjust bullet's movement direction
+        shoot_bullets(bullet_pos_x, bullet_pos_y)
+        bullet_pos_y -= bullet_y_movement
 
-        if bullet_pos_x > 1280:  # if bullet get out of screen you can shoot again
-            bullet_visible = False
-
-    # we set player's skin on screen
+    # we set player's and zombie skin on screen
     player(player_pos_x, player_pos_y)
     zombie(zombie_pos_x, zombie_pos_y)
 
