@@ -32,7 +32,7 @@ To execute the game manually you can do
 From the virtual directory "D:\Zombie_Invasion\venv\Scripts\python.exe" (taking all libraries) we excute "D:\Zombie_Invasion\main.py" 
 ```
 
-in terminal
+In terminal
 
 ```sh
 "D:\Zombie_Invasion\venv\Scripts\python.exe"  "D:\Zombie_Invasion\main.py" 
