@@ -48,6 +48,11 @@ is_executed = True
 
 #score
 score = 0
+text_pos_x = 10
+text_pos_y = 10
+
+#font and size
+font = pygame.font.Font('fonts/Fonzie-Medium.otf',32)
 
 # function to draw player's skin in his position X and Y
 def player(x, y):
@@ -70,6 +75,11 @@ def is_colission(x_1, y_1, x_2, y_2):
         return True
     else:
         return False
+
+# function to show score
+def show_score(x, y):
+    text = font.render(f"Kills: {score}", True, (255,255,0))
+    screen.blit(text, (x, y))
 
 while is_executed:
     # background screen's image
@@ -124,7 +134,6 @@ while is_executed:
             bullet_pos_y = 500
             bullet_visible = False
             score += 1
-            print(score)
             zombie_pos_x[e] = random.randint(0, 736)  # screen width / 2 - 32 (image's size 64px/2)
             zombie_pos_y[e] = random.randint(50, 200)  # screen height / 2 - 32 (image's size 64px/2)
 
@@ -142,6 +151,9 @@ while is_executed:
 
     # we set player's and zombie skin on screen
     player(player_pos_x, player_pos_y)
+
+    # show score
+    show_score(text_pos_x, text_pos_y)
 
     # update
     pygame.display.update()
