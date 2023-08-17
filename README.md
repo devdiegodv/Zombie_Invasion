@@ -33,4 +33,5 @@ From the virtual directory "D:\Zombie_Invasion\venv\Scripts\python.exe" (taking 
 ```
 
 if you are using PyCharm you can execute the game pressing SHIT+F10 or play symbol
+
 ![if you are using PyCharm you can execute the game pressing SHIT+F10 or play symbol](https://i.ibb.co/BPTJVwC/pycharm-play.png)
