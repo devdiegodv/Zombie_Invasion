@@ -39,8 +39,14 @@ In terminal
 "D:\Zombie_Invasion\venv\Scripts\python.exe"  "D:\Zombie_Invasion\main.py" 
 ```
 
-if you are using PyCharm you can execute the game pressing SHIT+F10 or play symbol
+If you are using PyCharm IDE you can execute the game pressing SHIT+F10 or play symbol
 
 <a href="https://ibb.co/z5PghN4"><img src="https://i.ibb.co/BPTJVwC/pycharm-play.png" alt="pycharm-play" border="0" /></a>
+
+If you are using Visual Studio Code IDE you can execute the game pressing SHIT+F10 or play symbol
+
+<a href="https://ibb.co/W3mbGLG"><img src="https://i.ibb.co/fSjhqsq/vsc-play.png" alt="vsc-play" border="0"></a>
+
+Game executed
 
 <a href="https://ibb.co/FKBCNVc"><img src="https://i.ibb.co/c1NVMLR/zombie-invasion.png" alt="zombie-invasion" border="0"></a>
