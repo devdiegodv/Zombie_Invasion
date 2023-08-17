@@ -57,11 +57,8 @@ score = 0
 text_pos_x = 10
 text_pos_y = 10
 
-# font and size
+#font and size
 font = pygame.font.Font('fonts/Fonzie-Medium.otf',32)
-
-# final font game
-final_font = pygame.font.Font('fonts/28 Days Later.ttf', 40)
 
 # function to draw player's skin in his position X and Y
 def player(x, y):
@@ -89,11 +86,6 @@ def is_colission(x_1, y_1, x_2, y_2):
 def show_score(x, y):
     text = font.render(f"Kills: {score}", True, (255,255,0))
     screen.blit(text, (x, y))
-
-# function to show final text on screen
-def final_text():
-    my_final_text = final_font.render("GAME FINISHED", True, (255, 0, 255))
-    screen.blit(my_final_text, (300,200)) # center coords on screen
 
 while is_executed:
     # background screen's image
@@ -132,17 +124,8 @@ while is_executed:
     elif player_pos_x >= 736: # 720 (height) - 64px (image's size skin)
         player_pos_x = 736
 
-    # for that loop all zombies in game
+    # set zombie position depending on zombie_y_movement's var value
     for e in range(total_zombies):
-        # check if zombie touch the player
-        if zombie_pos_y[e] > 500:
-            for k in range(total_zombies):
-                zombie_pos_y[k] = 1000
-
-            final_text()
-            break
-
-        # set zombie position depending on zombie_y_movement's var value
         zombie_pos_x[e] += zombie_x_movement[e]
 
         # keep zombies inside borders
