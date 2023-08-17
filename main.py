@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 # starts pygame
 pygame.init()
@@ -20,6 +21,12 @@ player_pos_y = 500 # screen width / 2 - 32 (image's size 64px/2)
 player_movement = 0
 
 # zombies
+img_zombie = []
+zombie_pos_x = []
+zombie_pos_y = []
+zombie_x_movement = []
+zombie_y_movement = []
+
 img_zombie = pygame.image.load("img/zombie.png")
 zombie_pos_x = random.randint(0, 736) # screen width / 2 - 32 (image's size 64px/2)
 zombie_pos_y = random.randint(50, 200) # screen height / 2 - 32 (image's size 64px/2)
@@ -37,6 +44,9 @@ bullet_visible = False
 # var to check if screen's player is opened/closed
 is_executed = True
 
+#score
+score = 0
+
 # function to draw player's skin in his position X and Y
 def player(x, y):
     screen.blit(img_player, (x, y))
@@ -50,6 +60,14 @@ def shoot_bullets(x, y):
     global bullet_visible
     bullet_visible = True
     screen.blit(img_bullet, (x + 16, y + 10))  # adjust bullet's position
+
+# function to detect collisions
+def is_colission(x_1, y_1, x_2, y_2):
+    distance = math.sqrt(math.pow(x_1 - x_2, 2) + math.pow(y_2 - y_1, 2))
+    if distance < 27:
+        return True
+    else:
+        return False
 
 while is_executed:
     # background screen's image
@@ -106,6 +124,16 @@ while is_executed:
     if bullet_visible:
         shoot_bullets(bullet_pos_x, bullet_pos_y)
         bullet_pos_y -= bullet_y_movement
+
+    # check if exist colission between bullets and zombies
+    colission = is_colission(zombie_pos_x, zombie_pos_y, bullet_pos_x, bullet_pos_y)
+    if colission:
+        bullet_pos_y = 500
+        bullet_visible = False
+        score += 1
+        print(score)
+        zombie_pos_x = random.randint(0, 736)  # screen width / 2 - 32 (image's size 64px/2)
+        zombie_pos_y = random.randint(50, 200)  # screen height / 2 - 32 (image's size 64px/2)
 
     # we set player's and zombie skin on screen
     player(player_pos_x, player_pos_y)
