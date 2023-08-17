@@ -6,6 +6,7 @@ Zombie_Invasion - Python mini game.
 ## Prerequisites:
 
   - [Python 3.9]
+  - [PyGame]
 
 ## Installation
 
