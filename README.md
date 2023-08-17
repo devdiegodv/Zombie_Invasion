@@ -9,11 +9,10 @@ Zombie_Invasion - Python mini game.
 
 ## Installation
 
-Install Python
+Install Python, then install pyenv module to create a virtual environment. In command prompt:
 
 ```sh
-source .venv/bin/activate
-source .env
+pip install pyenv
 ```
 
 Install libraries
