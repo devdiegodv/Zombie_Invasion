@@ -1,6 +1,7 @@
 import pygame
 import random
 import math
+from pygame import mixer
 
 # starts pygame
 pygame.init()
@@ -13,6 +14,11 @@ pygame.display.set_caption("Zombie Invasion")
 icon = pygame.image.load("img/skullLogo.png")
 pygame.display.set_icon(icon)
 background = pygame.image.load("img/background.jpg")
+
+# music and sounds
+mixer.music.load('sounds/background_music.mp3')
+mixer.music.set_volume(0.2)
+mixer.music.play(-1) # -1 repeat once finished
 
 # player
 img_player = pygame.image.load("img/player.png")
@@ -98,6 +104,8 @@ while is_executed:
             if event.key == pygame.K_RIGHT:
                 player_movement = 1
             if event.key == pygame.K_SPACE: # shoot key
+                shoot_sound = mixer.Sound('sounds/player_shoot.mp3') # sound when shooting
+                shoot_sound.play()
                 if bullet_visible == False:
                     bullet_pos_x = player_pos_x
                     shoot_bullets(bullet_pos_x, bullet_pos_y)
@@ -131,6 +139,8 @@ while is_executed:
         # check if exist colission between bullets and zombies
         colission = is_colission(zombie_pos_x[e], zombie_pos_y[e], bullet_pos_x, bullet_pos_y)
         if colission:
+            sound_zombie_shot = mixer.Sound("sounds/zombie_shot.mp3")
+            sound_zombie_shot.play()
             bullet_pos_y = 500
             bullet_visible = False
             score += 1
