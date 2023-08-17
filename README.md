@@ -43,7 +43,7 @@ If you are using PyCharm IDE you can execute the game pressing SHIT+F10 or play 
 
 <a href="https://ibb.co/z5PghN4"><img src="https://i.ibb.co/BPTJVwC/pycharm-play.png" alt="pycharm-play" border="0" /></a>
 
-If you are using Visual Studio Code IDE you can execute the game pressing SHIT+F10 or play symbol
+If you are using Visual Studio Code IDE you can execute the game pressing CTRL+F5 or play symbol
 
 <a href="https://ibb.co/W3mbGLG"><img src="https://i.ibb.co/fSjhqsq/vsc-play.png" alt="vsc-play" border="0"></a>
 
