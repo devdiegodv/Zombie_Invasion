@@ -41,6 +41,6 @@ In terminal
 
 if you are using PyCharm you can execute the game pressing SHIT+F10 or play symbol
 
-![if you are using PyCharm you can execute the game pressing SHIT+F10 or play symbol](https://i.ibb.co/BPTJVwC/pycharm-play.png)
+<a href="https://ibb.co/z5PghN4"><img src="https://i.ibb.co/BPTJVwC/pycharm-play.png" alt="pycharm-play" border="0" /></a>
 
 <a href="https://ibb.co/FKBCNVc"><img src="https://i.ibb.co/c1NVMLR/zombie-invasion.png" alt="zombie-invasion" border="0"></a>
