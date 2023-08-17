@@ -26,12 +26,14 @@ zombie_pos_x = []
 zombie_pos_y = []
 zombie_x_movement = []
 zombie_y_movement = []
+total_zombies = 10
 
-img_zombie = pygame.image.load("img/zombie.png")
-zombie_pos_x = random.randint(0, 736) # screen width / 2 - 32 (image's size 64px/2)
-zombie_pos_y = random.randint(50, 200) # screen height / 2 - 32 (image's size 64px/2)
-zombie_x_movement = 0.3 # zombie speed
-zombie_y_movement = 10 # zombie speed at getting close
+for e in range(total_zombies):
+    img_zombie.append(pygame.image.load("img/zombie.png"))
+    zombie_pos_x.append(random.randint(0, 736)) # screen width / 2 - 32 (image's size 64px/2)
+    zombie_pos_y.append(random.randint(50, 200)) # screen height / 2 - 32 (image's size 64px/2)
+    zombie_x_movement.append(0.3) # zombie speed
+    zombie_y_movement.append(10) # zombie speed at getting close
 
 # bullets
 img_bullet = pygame.image.load("img/bullet.png")
@@ -52,8 +54,8 @@ def player(x, y):
     screen.blit(img_player, (x, y))
 
 # function to draw zombie's skin in his position X and Y
-def zombie(x, y):
-    screen.blit(img_zombie, (x, y))
+def zombie(x, y, zom):
+    screen.blit(img_zombie[zom], (x, y))
 
 # function to draw bullets
 def shoot_bullets(x, y):
@@ -105,15 +107,28 @@ while is_executed:
         player_pos_x = 736
 
     # set zombie position depending on zombie_y_movement's var value
-    zombie_pos_x += zombie_x_movement
+    for e in range(total_zombies):
+        zombie_pos_x[e] += zombie_x_movement[e]
 
-    # keep zombies inside borders
-    if zombie_pos_x <= 0:
-        zombie_x_movement = 0.3
-        zombie_pos_y += zombie_y_movement
-    elif zombie_pos_x >= 656: # 720 (height) - 64px (image's size skin)
-        zombie_x_movement = -0.3
-        zombie_pos_y += zombie_y_movement
+        # keep zombies inside borders
+        if zombie_pos_x[e] <= 0:
+            zombie_x_movement[e] = 0.3
+            zombie_pos_y[e] += zombie_y_movement[e]
+        elif zombie_pos_x[e] >= 656: # 720 (height) - 64px (image's size skin)
+            zombie_x_movement[e] = -0.3
+            zombie_pos_y[e] += zombie_y_movement[e]
+
+        # check if exist colission between bullets and zombies
+        colission = is_colission(zombie_pos_x[e], zombie_pos_y[e], bullet_pos_x, bullet_pos_y)
+        if colission:
+            bullet_pos_y = 500
+            bullet_visible = False
+            score += 1
+            print(score)
+            zombie_pos_x[e] = random.randint(0, 736)  # screen width / 2 - 32 (image's size 64px/2)
+            zombie_pos_y[e] = random.randint(50, 200)  # screen height / 2 - 32 (image's size 64px/2)
+
+        zombie(zombie_pos_x[e], zombie_pos_y[e], e)
 
     # reset shooting once bullet get out of screen
     if bullet_pos_y <= -64:
@@ -125,19 +140,8 @@ while is_executed:
         shoot_bullets(bullet_pos_x, bullet_pos_y)
         bullet_pos_y -= bullet_y_movement
 
-    # check if exist colission between bullets and zombies
-    colission = is_colission(zombie_pos_x, zombie_pos_y, bullet_pos_x, bullet_pos_y)
-    if colission:
-        bullet_pos_y = 500
-        bullet_visible = False
-        score += 1
-        print(score)
-        zombie_pos_x = random.randint(0, 736)  # screen width / 2 - 32 (image's size 64px/2)
-        zombie_pos_y = random.randint(50, 200)  # screen height / 2 - 32 (image's size 64px/2)
-
     # we set player's and zombie skin on screen
     player(player_pos_x, player_pos_y)
-    zombie(zombie_pos_x, zombie_pos_y)
 
     # update
     pygame.display.update()
