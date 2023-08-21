@@ -1,52 +1,39 @@
-Zombie_Invasion - Python mini game.
-================
+# Zombie Invasion Game
 
-# Local installation in Windows
+![Zombie Invasion](https://i.ibb.co/c1NVMLR/zombie-invasion.png)
 
-## Prerequisites:
+Welcome to the Zombie Invasion game! This Python mini-game places you in the middle of a zombie apocalypse, where you must take on the role of a survivor driving a tank. Your mission is to eliminate every zombie that crosses your path. Are you up for the challenge?
 
-  - [Python 3.9]
-  - [PyGame]
+## Table of Contents
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [How to Play](#how-to-play)
+- [Controls](#controls)
+- [Gameplay](#gameplay)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Installation
+## Getting Started
 
-Install Python, then install pyenv module to create a virtual environment. In command prompt
+### Prerequisites
+Make sure you have the following prerequisites installed on your system:
+- Python (version 3.8)
+- PyGame
 
-```sh
-pip install pyenv
-```
+### Installation
+1. Clone this repository to your local machine using:
 
-Once pyenv is installed make a virtual environment in proyect directory
-```sh
-python -m venv .venv
-```
+git clone https://github.com/dev-diegov/Zombie_Invasion.git
 
-Install libraries on virtual environment
+2. Navigate to the project directory:
 
-```sh
+cd Zombie_Invasion
+
+3. Install any necessary dependencies:
+
 pip install -r requirements.txt
-```
 
-To execute the game manually you can do
-
-```sh
-From the virtual directory "D:\Zombie_Invasion\venv\Scripts\python.exe" (taking all libraries) we excute "D:\Zombie_Invasion\main.py" 
-```
-
-In terminal
-
-```sh
-"D:\Zombie_Invasion\venv\Scripts\python.exe"  "D:\Zombie_Invasion\main.py" 
-```
-
-If you are using PyCharm IDE you can execute the game pressing SHIT+F10 or play symbol
-
-<a href="https://ibb.co/z5PghN4"><img src="https://i.ibb.co/BPTJVwC/pycharm-play.png" alt="pycharm-play" border="0" /></a>
-
-If you are using Visual Studio Code IDE you can execute the game pressing CTRL+F5 or play symbol
-
-<a href="https://ibb.co/W3mbGLG"><img src="https://i.ibb.co/fSjhqsq/vsc-play.png" alt="vsc-play" border="0"></a>
-
-Game executed
-
-<a href="https://ibb.co/FKBCNVc"><img src="https://i.ibb.co/c1NVMLR/zombie-invasion.png" alt="zombie-invasion" border="0"></a>
+## How to Play
+To start playing Zombie Invasion, follow these steps:
+1. Run the game script:
