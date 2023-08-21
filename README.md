@@ -34,10 +34,11 @@ git clone https://github.com/dev-diegov/Zombie_Invasion.git
 cd Zombie_Invasion
 ```
 
-```sh
 3. Install any necessary dependencies:
-```
+
+```sh
 pip install -r requirements.txt
+```
 
 ## How to Play
 To start playing Zombie Invasion, follow these steps:
