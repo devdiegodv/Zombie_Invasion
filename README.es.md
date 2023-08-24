@@ -1,1 +1,1 @@
-#
+¡Bienvenido al juego Zombie Invasion! Este minijuego de Python te sitúa en medio de un apocalipsis zombie, donde debes asumir el papel de un superviviente que conduce un tanque. Tu misión es eliminar a todos los zombies que se crucen en tu camino. ¿Estás preparado para el reto?
